@@ -1,3 +1,5 @@
+// button ID, back button
+
 /******************************************************************************
   QUIZ COMPONENT
 ******************************************************************************/
@@ -49,7 +51,7 @@ var questions = [
   I regularly stop people in the street 
   to pet their dogs.
   ` 
-] 
+]  
 var i = 0
 var question = questions[i]
 var result = "Click to see results"
@@ -61,6 +63,7 @@ function quizComponent () {
       text-align: center;
       font-family: 'Kaushan Script', cursive;
       padding-bottom: 200px;
+      cursor: pointer;
     }   
     .welcome {
       font-size: 4em;
@@ -90,6 +93,7 @@ function quizComponent () {
       background-color: ${lightBrown}
     }
     .instruction {
+      color: ${violet};
       font-size: 1em;
       margin: 0 15%;
       padding: 20px;
@@ -100,10 +104,22 @@ function quizComponent () {
       font-family: 'Kaushan Script', cursive;
       padding-bottom: 200px;
     }
+    .back {
+      display: flex;
+      justify-content: center;
+    }
+    .backImg {
+      height: 30px;
+      padding: 5px;
+    }
+    .backText {
+      color: ${white};
+      font-size: 25px;
+    }
   `
 	var html = template()
   document.body.appendChild(html) 
-  
+   
   return html
   
   function template () {
@@ -116,23 +132,29 @@ function quizComponent () {
         ${question} 
       </div>
       <div class="${css.answers}">
-        <div class="${css.answer}" onclick=${nextQuestion}>1</div>
-        <div class="${css.answer}" onclick=${nextQuestion}>2</div>
-        <div class="${css.answer}" onclick=${nextQuestion}>3</div>
-        <div class="${css.answer}" onclick=${nextQuestion}>4</div>
-        <div class="${css.answer}" onclick=${nextQuestion}>5</div>
-        <div class="${css.answer}" onclick=${nextQuestion}>6</div>
+        <div class="${css.answer}" id="1" onclick=${nextQuestion}>1</div>
+        <div class="${css.answer}" id="2" onclick=${nextQuestion}>2</div>
+        <div class="${css.answer}" id="3" onclick=${nextQuestion}>3</div>
+        <div class="${css.answer}" id="4" onclick=${nextQuestion}>4</div>
+        <div class="${css.answer}" id="5" onclick=${nextQuestion}>5</div>
+        <div class="${css.answer}" id="6" onclick=${nextQuestion}>6</div>
       </div>
       <div class="${css.instruction}">
-        Mark how strong from 1 (not at all) to 6 (completely) 
-        do you agree with the statement.
+        Choose how strongly do you agree with the statement<br>
+        (1 - don't agree at all, 6 - completely agree) 
+        .
 			</div>
+        <div class="${css.back}" onclick=${back}>
+        	<img src="http://i.imgur.com/L6kXXEi.png" class="${css.backImg}"> 
+          <div class="${css.backText}">Back</div>
+        </div>
     </div> 
     ` 
   } 
   
   function nextQuestion() {
     if (i < (questions.length-1)) {
+      console.log(this.id)
       i = i+1  
       question = questions[i]
       yo.update(html, template())
@@ -144,9 +166,19 @@ function quizComponent () {
   function seeResults() {
     return yo`
     	<div class="${css.results}">
-        See how others answered
+        <div class="${css.welcome}">
+          See how others answered
+        </div>
       </div>
     `
+  }
+  
+  function back() {
+    if (i > 0) {
+      i = i-1 
+      question = questions[i]
+      yo.update(html, template())
+    }
   }
 }
 
