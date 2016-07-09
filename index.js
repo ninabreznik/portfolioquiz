@@ -17,6 +17,43 @@ var link = 'https://fonts.googleapis.com/css?family=Kaushan+Script'
 var font = yo`<link href=${link} rel='stylesheet' type='text/css'>`
 document.head.appendChild(font)
 
+// QUESTIONS
+
+var questions = [
+	`
+  Statement #1:
+  The next social network I build, 
+  will definitely be for cats.
+  `,
+  `
+  Statement #2:
+  I believe dogs should be allowed 
+  everywhere people are
+  `,
+  `
+  Statement #3:
+  My friends say, my middle name should be "Meow".
+  `,
+  `
+  Statement #4:
+  Snoop Dog is definitely one of my 
+  favourite artists
+  `, 
+  `
+  Statement #5:
+  I think I could spend all day just 
+  watching cat videows
+  `,
+  `
+  Statement #6:
+  I regularly stop people in the street 
+  to pet their dogs.
+  ` 
+] 
+var i = 0
+var question = questions[i]
+var result = "Click to see results"
+
 function quizComponent () {
 	var css = csjs`
   	.quiz {
@@ -27,13 +64,13 @@ function quizComponent () {
     }   
     .welcome {
       font-size: 4em;
-      padding: 70px;
+      padding: 50px;
       color: ${darkBrown}
     }
     .question {
       font-size: 2em;
       color: ${white};
-      padding: 30px;
+      padding: 40px;
       margin: 0 5%;
     }
     .answers {
@@ -52,10 +89,21 @@ function quizComponent () {
     .answer:hover {
       background-color: ${lightBrown}
     }
+    .instruction {
+      font-size: 1em;
+      margin: 0 15%;
+      padding: 20px;
+    }
+    .results {
+      background-color: ${violet};
+      text-align: center;
+      font-family: 'Kaushan Script', cursive;
+      padding-bottom: 200px;
+    }
   `
-  document.body.appendChild(template()) 
+	var html = template()
+  document.body.appendChild(html) 
   
-  var html = template()
   return html
   
   function template () {
@@ -65,19 +113,41 @@ function quizComponent () {
         Welcome to my quiz!
       </div>
       <div class="${css.question}">
-        Statement #1: If I had to choose, I would choose a cat over a dog.
+        ${question} 
       </div>
       <div class="${css.answers}">
-        <div class="${css.answer}">1</div>
-        <div class="${css.answer}">2</div>
-        <div class="${css.answer}">3</div>
-        <div class="${css.answer}">4</div>
-        <div class="${css.answer}">5</div>
-        <div class="${css.answer}">6</div>
+        <div class="${css.answer}" onclick=${nextQuestion}>1</div>
+        <div class="${css.answer}" onclick=${nextQuestion}>2</div>
+        <div class="${css.answer}" onclick=${nextQuestion}>3</div>
+        <div class="${css.answer}" onclick=${nextQuestion}>4</div>
+        <div class="${css.answer}" onclick=${nextQuestion}>5</div>
+        <div class="${css.answer}" onclick=${nextQuestion}>6</div>
       </div>
-    </div>
+      <div class="${css.instruction}">
+        Mark how strong from 1 (not at all) to 6 (completely) 
+        do you agree with the statement.
+			</div>
+    </div> 
+    ` 
+  } 
+  
+  function nextQuestion() {
+    if (i < (questions.length-1)) {
+      i = i+1  
+      question = questions[i]
+      yo.update(html, template())
+    } else {
+    	yo.update(html, seeResults())
+    }
+  }
+  
+  function seeResults() {
+    return yo`
+    	<div class="${css.results}">
+        See how others answered
+      </div>
     `
-  }                  
+  }
 }
 
 quizComponent()
