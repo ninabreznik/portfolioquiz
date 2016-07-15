@@ -1,4 +1,4 @@
-// sendData, results
+// refactor id
 /******************************************************************************
   QUIZ COMPONENT
 ******************************************************************************/
@@ -141,12 +141,12 @@ function quizComponent () {
         ${question} 
       </div>
       <div class="${css.answers}">
-        <div class="${css.answer}" id="1" onclick=${nextQuestion}>1</div>
-        <div class="${css.answer}" id="2" onclick=${nextQuestion}>2</div>
-        <div class="${css.answer}" id="3" onclick=${nextQuestion}>3</div>
-        <div class="${css.answer}" id="4" onclick=${nextQuestion}>4</div>
-        <div class="${css.answer}" id="5" onclick=${nextQuestion}>5</div>
-        <div class="${css.answer}" id="6" onclick=${nextQuestion}>6</div>
+        <div class="${css.answer}" onclick=${nextQuestion(1)}>1</div>
+        <div class="${css.answer}" onclick=${nextQuestion(2)}>2</div>
+        <div class="${css.answer}" onclick=${nextQuestion(3)}>3</div>
+        <div class="${css.answer}" onclick=${nextQuestion(4)}>4</div>
+        <div class="${css.answer}" onclick=${nextQuestion(5)}>5</div>
+        <div class="${css.answer}" onclick=${nextQuestion(6)}>6</div>
       </div>
       <div class="${css.instruction}">
         Choose how strongly do you agree with the statement<br>
@@ -161,16 +161,18 @@ function quizComponent () {
     ` 
   } 
   
-  function nextQuestion() {
-    if (i < (questions.length-1)) {
-      results[i] = this.id
-      i = i+1  
-      question = questions[i]
-      yo.update(html, template())
-    } else { 
-      results[i] = this.id
-      sendData(results)
-    	yo.update(html, seeResults())
+  function nextQuestion(id) {
+  	return function () {
+      if (i < (questions.length-1)) {
+        results[i] = id
+        i = i+1  
+        question = questions[i]
+        yo.update(html, template())
+    	} else { 
+        results[i] = id
+        sendData(results)
+        yo.update(html, seeResults())
+    	}
     }
   }
   
