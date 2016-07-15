@@ -7,13 +7,7 @@
 var yo = require('yo-yo')
 var csjs = require('csjs-inject')
 var minixhr = require('minixhr')
-//var firebase = require('firebase'); 
-//var app = firebase.initializeApp({
-  //apiKey: "AIzaSyAQaeDK9YCU1YRfxMCX63uahUvJlxtYHo4",
-  //authDomain: "test-ceff2.firebaseapp.com",
-  //databaseURL: "https://test-ceff2.firebaseio.com",
-  //storageBucket: "test-ceff2.appspot.com"
-//});
+
 
 // COLORS
 var yellow = "#C2B97F"
