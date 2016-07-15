@@ -1,4 +1,4 @@
-// button ID, back button
+// results, sendData
 
 /******************************************************************************
   QUIZ COMPONENT
