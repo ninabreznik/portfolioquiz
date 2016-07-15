@@ -1,4 +1,4 @@
-// results, sendData
+// button ID, back button
 
 /******************************************************************************
   QUIZ COMPONENT
@@ -7,6 +7,13 @@
 var yo = require('yo-yo')
 var csjs = require('csjs-inject')
 var minixhr = require('minixhr')
+//var firebase = require('firebase'); 
+//var app = firebase.initializeApp({
+  //apiKey: "AIzaSyAQaeDK9YCU1YRfxMCX63uahUvJlxtYHo4",
+  //authDomain: "test-ceff2.firebaseapp.com",
+  //databaseURL: "https://test-ceff2.firebaseio.com",
+  //storageBucket: "test-ceff2.appspot.com"
+//});
 
 // COLORS
 var yellow = "#C2B97F"
@@ -15,9 +22,9 @@ var violet = "#8E5572"
 var lightBrown = "#BCAA99"
 var darkBrown = "#88665D"
 
-// FONT
-var link = 'https://fonts.googleapis.com/css?family=Kaushan+Script'
-var font = yo`<link href=${link} rel='stylesheet' type='text/css'>`
+// FONT 
+var links = ['https://fonts.googleapis.com/css?family=Kaushan+Script']
+var font = yo`<link href=${links[0]} rel='stylesheet' type='text/css'>`
 document.head.appendChild(font)
 
 // QUESTIONS
@@ -49,7 +56,7 @@ var questions = [
   `,
   `
   Statement #6:
-  I regularly stop people in the street 
+  I regularly stop people in the street   
   to pet their dogs.
   ` 
 ]  
@@ -108,6 +115,11 @@ function quizComponent () {
       font-family: 'Kaushan Script', cursive;
       padding-bottom: 200px;
     }
+  	.resultTitle{
+      font-size: 4em;
+      padding: 50px;
+      color: ${white}
+  	}
     .back {
       display: flex;
       justify-content: center;
@@ -162,7 +174,7 @@ function quizComponent () {
       i = i+1  
       question = questions[i]
       yo.update(html, template())
-    } else {
+    } else { 
       results[i] = this.id
       sendData(results)
     	yo.update(html, seeResults())
@@ -172,7 +184,7 @@ function quizComponent () {
   function seeResults() {
     return yo`
     	<div class="${css.results}">
-        <div class="${css.welcome}">
+        <div class="${css.resultTitle}">
           See how others answered
         </div>
       </div>
