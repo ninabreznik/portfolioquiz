@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "yo-yo": "1.2.1",
-    "csjs-inject": "1.0.0"
+    "csjs-inject": "1.0.0",
+    "minixhr": "3.0.4"
   }
 }

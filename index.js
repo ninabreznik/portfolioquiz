@@ -6,11 +6,12 @@
 // REQUIRE
 var yo = require('yo-yo')
 var csjs = require('csjs-inject')
+var minixhr = require('minixhr')
 
 // COLORS
 var yellow = "#C2B97F"
 var white = "#F2F7F2"
-var violet = "#8E5572"
+var violet = "#8E5572" 
 var lightBrown = "#BCAA99"
 var darkBrown = "#88665D"
 
@@ -52,9 +53,12 @@ var questions = [
   to pet their dogs.
   ` 
 ]  
+
+// VARIABLES
 var i = 0
 var question = questions[i]
 var result = "Click to see results"
+var results = []
 
 function quizComponent () {
 	var css = csjs`
@@ -154,11 +158,13 @@ function quizComponent () {
   
   function nextQuestion() {
     if (i < (questions.length-1)) {
-      console.log(this.id)
+      results[i] = this.id
       i = i+1  
       question = questions[i]
       yo.update(html, template())
     } else {
+      results[i] = this.id
+      sendData(results)
     	yo.update(html, seeResults())
     }
   }
@@ -179,6 +185,16 @@ function quizComponent () {
       question = questions[i]
       yo.update(html, template())
     }
+  }
+    
+  function sendData(data) {
+    var request  = {  
+  		url          : 'http://requestb.in/ss2ioyss',
+ 		 	method       : 'POST', 
+  		data         : JSON.stringify(data),
+      headers      : {}
+		}
+    minixhr(request)
   }
 }
 
