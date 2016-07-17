@@ -1606,12 +1606,12 @@ module.exports = function xhr2 (params, callback) {
 
 },{"xhrpolyfill":1}]},{},[])
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL2hvbWUvYWRtaW4vYnJvd3NlcmlmeS1jZG4vbm9kZV9tb2R1bGVzL2Jyb3dzZXJpZnkvbm9kZV9tb2R1bGVzL2Jyb3dzZXItcGFjay9fcHJlbHVkZS5qcyIsIm5vZGVfbW9kdWxlcy94aHJwb2x5ZmlsbC9pbmRleC5qcyIsIm1pbml4aHIuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUNBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBOztBQ2hCQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EiLCJmaWxlIjoiZ2VuZXJhdGVkLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXNDb250ZW50IjpbIihmdW5jdGlvbiBlKHQsbixyKXtmdW5jdGlvbiBzKG8sdSl7aWYoIW5bb10pe2lmKCF0W29dKXt2YXIgYT10eXBlb2YgcmVxdWlyZT09XCJmdW5jdGlvblwiJiZyZXF1aXJlO2lmKCF1JiZhKXJldHVybiBhKG8sITApO2lmKGkpcmV0dXJuIGkobywhMCk7dmFyIGY9bmV3IEVycm9yKFwiQ2Fubm90IGZpbmQgbW9kdWxlICdcIitvK1wiJ1wiKTt0aHJvdyBmLmNvZGU9XCJNT0RVTEVfTk9UX0ZPVU5EXCIsZn12YXIgbD1uW29dPXtleHBvcnRzOnt9fTt0W29dWzBdLmNhbGwobC5leHBvcnRzLGZ1bmN0aW9uKGUpe3ZhciBuPXRbb11bMV1bZV07cmV0dXJuIHMobj9uOmUpfSxsLGwuZXhwb3J0cyxlLHQsbixyKX1yZXR1cm4gbltvXS5leHBvcnRzfXZhciBpPXR5cGVvZiByZXF1aXJlPT1cImZ1bmN0aW9uXCImJnJlcXVpcmU7Zm9yKHZhciBvPTA7bzxyLmxlbmd0aDtvKyspcyhyW29dKTtyZXR1cm4gc30pIiwidmFyIHhockZhY3RvcnkgPSAoZnVuY3Rpb24gZ2V0WEhSZmFjdG9yeSAoZmFjdG9yaWVzKSB7XG4gIGZvciAodmFyIGk9MCwgeGhyLCBYLCBsZW49ZmFjdG9yaWVzLmxlbmd0aDsgaTxsZW47IGkrKykge1xuICAgIHRyeSB7IFggPSBmYWN0b3JpZXNbaV07IHhociA9IFgoKTtcbiAgICAgIHJldHVybiB3aW5kb3cuWE1MSHR0cFJlcXVlc3QgPyBYIDogd2luZG93LlhNTEh0dHBSZXF1ZXN0ID0gWDtcbiAgICB9IGNhdGNoIChlKSB7IGNvbnRpbnVlOyB9XG4gIH1cbn0pKFtcbiAgZnVuY3Rpb24gKCkge3JldHVybiBuZXcgWE1MSHR0cFJlcXVlc3QoKTt9LC8vIElFMTArLEZGLENocm9tZSxPcGVyYSxTYWZhcmlcbiAgZnVuY3Rpb24gKCkge3JldHVybiBuZXcgQWN0aXZlWE9iamVjdChcIk1zeG1sMy5cIik7fSwgICAgICAgICAgICAvLyBJRTlcbiAgZnVuY3Rpb24gKCkge3JldHVybiBuZXcgQWN0aXZlWE9iamVjdChcIk1zeG1sMi5YTUxIVFRQLjYuMFwiKTt9LCAvLyBJRThcbiAgZnVuY3Rpb24gKCkge3JldHVybiBuZXcgQWN0aXZlWE9iamVjdChcIk1zeG1sMi5YTUxIVFRQLjMuMFwiKTt9LCAvLyBJRTdcbiAgZnVuY3Rpb24gKCkge3JldHVybiBuZXcgQWN0aXZlWE9iamVjdChcIk1zeG1sMi5YTUxIVFRQXCIpO30sICAgICAvLyBJRTZcbiAgZnVuY3Rpb24gKCkge3JldHVybiBuZXcgQWN0aXZlWE9iamVjdChcIk1pY3Jvc29mdC5YTUxIVFRQXCIpO30sICAvLyBJRTVcbiAgZnVuY3Rpb24gKCkge3JldHVybiBudWxsO31cbl0pO1xubW9kdWxlLmV4cG9ydHMgPSBmdW5jdGlvbiBnZXRYSFIoKSB7IHJldHVybiB4aHJGYWN0b3J5KCk7IH1cbiIsInZhciBYTUxIdHRwUmVxdWVzdCAgPSByZXF1aXJlKCd4aHJwb2x5ZmlsbCcpXG5tb2R1bGUuZXhwb3J0cyA9IGZ1bmN0aW9uIHhocjIgKHBhcmFtcywgY2FsbGJhY2spIHtcbiAgdmFyIHVybCA9IHR5cGVvZiBwYXJhbXMgPT09ICdzdHJpbmcnID8gcGFyYW1zIDogcGFyYW1zLnVybFxuICB2YXIgbWV0aG9kID0gcGFyYW1zLm1ldGhvZCB8fCAocGFyYW1zLmRhdGEgPyAnUE9TVCc6ICdHRVQnKVxuICB2YXIgYm9keSA9IHBhcmFtcy5kYXRhXG4gIHZhciBIID0gcGFyYW1zLmhlYWRlcnMgPyBwYXJhbXMuaGVhZGVycyA6IHBhcmFtcy5ib2R5ID8ge1xuICAgICdYLVJlcXVlc3RlZC1XaXRoJyA6J1hNTEh0dHBSZXF1ZXN0JyxcbiAgICAnQ29udGVudC1UeXBlJyAgICAgOidhcHBsaWNhdGlvbi94LXd3dy1mb3JtLXVybGVuY29kZWQnXG4gIH0gOiB7fVxuICB2YXIgeGhyID0gWE1MSHR0cFJlcXVlc3QoKVxuICBpZiAoIXhocikgdGhyb3cgbmV3IEVycm9yKCdObyBBSkFYIHN1cHBvcnQnKVxuICB4aHIub3BlbihtZXRob2QsIHVybClcbiAgZm9yICh2YXIga2V5IGluIEgpIHhoci5zZXRSZXF1ZXN0SGVhZGVyKGtleSwgSFtrZXldKVxuICB4aHIub25sb2FkID0geGhyLm9uZXJyb3IgPSBmdW5jdGlvbiAocmVzcG9uc2UpIHtcbiAgICB2YXIgSGpzb24gPSB7fSwgaCA9IHhoci5nZXRBbGxSZXNwb25zZUhlYWRlcnMoKVxuICAgIDsoaC5tYXRjaCgvKFteXFxuXFxyOl0rKTooW15cXG5cXHJdKykvZyl8fFtdKS5mb3JFYWNoKGZ1bmN0aW9uKGl0ZW0pe1xuICAgICAgdmFyIHRtcCA9IGl0ZW0uc3BsaXQoJzogJylcbiAgICAgIEhqc29uW3RtcFswXV0gPSB0bXBbMV1cbiAgICB9KVxuICAgIGlmIChjYWxsYmFjaykgY2FsbGJhY2sodGhpcy5yZXNwb25zZSwgcmVzcG9uc2UsIHhociwgSGpzb24pXG4gIH1cbiAgeGhyLnNlbmQoYm9keXx8bnVsbClcbn1cbiJdfQ==
-// refactor id
+// firebase REST API
 /******************************************************************************
   QUIZ COMPONENT
 ******************************************************************************/
 // REQUIRE
-var yo = require('yo-yo')
+var yo = require('yo-yo') 
 var csjs = require('csjs-inject')
 var minixhr = require('minixhr')
 
@@ -1667,6 +1667,7 @@ var i = 0
 var question = questions[i]
 var result = "Click to see results"
 var results = []
+var answerOptions = [1,2,3,4,5,6]
 
 function quizComponent () {
 	var css = csjs`
@@ -1749,12 +1750,9 @@ function quizComponent () {
         ${question} 
       </div>
       <div class="${css.answers}">
-        <div class="${css.answer}" onclick=${nextQuestion(1)}>1</div>
-        <div class="${css.answer}" onclick=${nextQuestion(2)}>2</div>
-        <div class="${css.answer}" onclick=${nextQuestion(3)}>3</div>
-        <div class="${css.answer}" onclick=${nextQuestion(4)}>4</div>
-        <div class="${css.answer}" onclick=${nextQuestion(5)}>5</div>
-        <div class="${css.answer}" onclick=${nextQuestion(6)}>6</div>
+        ${answerOptions.map(x=>yo`
+        	<div class="${css.answer}" onclick=${nextQuestion(x)}>${x}</div>
+        `)}
       </div>
       <div class="${css.instruction}">
         Choose how strongly do you agree with the statement<br>
@@ -1779,35 +1777,35 @@ function quizComponent () {
     	} else { 
         results[i] = id
         sendData(results)
-        yo.update(html, seeResults())
+        yo.update(html, seeResults(results))
     	}
     }
   }
   
-  function seeResults() {
+  function seeResults(data) {
     return yo`
     	<div class="${css.results}">
         <div class="${css.resultTitle}">
-          See how others answered
+          See how others answered:
+    You: ${data}
         </div>
       </div>
     `
   }
   
   function back() {
-    if (i > 0) {
+    if (i > 0) { 
       i = i-1 
       question = questions[i]
       yo.update(html, template())
     }
   }
     
-  function sendData(data) {
-    var request  = {  
-  		url          : 'http://requestb.in/ss2ioyss',
- 		 	method       : 'POST', 
-  		data         : JSON.stringify(data),
-      headers      : {}
+  function sendData(results) { 
+    var request  = { 
+  		url          : 'https://test-ceff2.firebaseio.com/results.json',
+  		method       : 'POST',
+  		data         : JSON.stringify(results)
 		}
     minixhr(request)
   }

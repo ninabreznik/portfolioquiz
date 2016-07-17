@@ -1,9 +1,9 @@
-// refactor id
+// firebase REST API
 /******************************************************************************
   QUIZ COMPONENT
 ******************************************************************************/
 // REQUIRE
-var yo = require('yo-yo')
+var yo = require('yo-yo') 
 var csjs = require('csjs-inject')
 var minixhr = require('minixhr')
 
@@ -59,6 +59,7 @@ var i = 0
 var question = questions[i]
 var result = "Click to see results"
 var results = []
+var answerOptions = [1,2,3,4,5,6]
 
 function quizComponent () {
 	var css = csjs`
@@ -141,12 +142,9 @@ function quizComponent () {
         ${question} 
       </div>
       <div class="${css.answers}">
-        <div class="${css.answer}" onclick=${nextQuestion(1)}>1</div>
-        <div class="${css.answer}" onclick=${nextQuestion(2)}>2</div>
-        <div class="${css.answer}" onclick=${nextQuestion(3)}>3</div>
-        <div class="${css.answer}" onclick=${nextQuestion(4)}>4</div>
-        <div class="${css.answer}" onclick=${nextQuestion(5)}>5</div>
-        <div class="${css.answer}" onclick=${nextQuestion(6)}>6</div>
+        ${answerOptions.map(x=>yo`
+        	<div class="${css.answer}" onclick=${nextQuestion(x)}>${x}</div>
+        `)}
       </div>
       <div class="${css.instruction}">
         Choose how strongly do you agree with the statement<br>
@@ -171,35 +169,35 @@ function quizComponent () {
     	} else { 
         results[i] = id
         sendData(results)
-        yo.update(html, seeResults())
+        yo.update(html, seeResults(results))
     	}
     }
   }
   
-  function seeResults() {
+  function seeResults(data) {
     return yo`
     	<div class="${css.results}">
         <div class="${css.resultTitle}">
-          See how others answered
+          See how others answered:
+    You: ${data}
         </div>
       </div>
     `
   }
   
   function back() {
-    if (i > 0) {
+    if (i > 0) { 
       i = i-1 
       question = questions[i]
       yo.update(html, template())
     }
   }
     
-  function sendData(data) {
-    var request  = {  
-  		url          : 'http://requestb.in/ss2ioyss',
- 		 	method       : 'POST', 
-  		data         : JSON.stringify(data),
-      headers      : {}
+  function sendData(results) { 
+    var request  = { 
+  		url          : 'https://test-ceff2.firebaseio.com/results.json',
+  		method       : 'POST',
+  		data         : JSON.stringify(results)
 		}
     minixhr(request)
   }
