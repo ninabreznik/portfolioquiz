@@ -6,9 +6,10 @@
 var yo = require('yo-yo') 
 var csjs = require('csjs-inject')
 var minixhr = require('minixhr')
+var chart = require('plotly.js/lib/core')
 
 
-// COLORS
+// COLORS 
 var yellow = "#C2B97F"
 var white = "#F2F7F2"
 var violet = "#8E5572" 
@@ -22,7 +23,7 @@ document.head.appendChild(font)
 
 // QUESTIONS
 
-var questions = [
+var questions = [ 
 	`
   Statement #1:
   The next social network I build, 
@@ -179,10 +180,36 @@ function quizComponent () {
     	<div class="${css.results}">
         <div class="${css.resultTitle}">
           See how others answered:
-    You: ${data}
+    		${createChart(data)}
         </div>
       </div>
+    ` 
+  }
+ 
+  function createChart(data) {
+  	return yo`
+    	<div id="myDiv" style="width: 480px; height: 400px;"></div>
     `
+    
+		var trace1 = {
+      x: [1, 2, 3, 4],
+      y: [10, 11, 12, 13],
+      mode: 'markers',
+      marker: {
+        size: [40, 60, 80, 100]
+      }
+    }
+
+		var data = [trace1];
+
+    var layout = {
+      title: 'Marker Size',
+      showlegend: false,
+      height: 400,
+      width: 480
+    };
+
+		Plotly.newPlot('myDiv', data, layout);
   }
   
   function back() {
