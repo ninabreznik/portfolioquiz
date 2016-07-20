@@ -2,9 +2,9 @@
   "name": "requirebin-sketch",
   "version": "1.0.0",
   "dependencies": {
-    "yo-yo": "1.2.1",
+    "yo-yo": "1.2.2",
     "csjs-inject": "1.0.0",
-    "minixhr": "3.0.4",
-    "plotly": "1.0.6"
+    "minixhr": "3.1.0",
+    "chart.js": "2.2.0-rc.1"
   }
 }

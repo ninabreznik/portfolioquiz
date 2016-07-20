@@ -1,13 +1,12 @@
 // firebase REST API
 /******************************************************************************
   QUIZ COMPONENT
-******************************************************************************/
+******************************************************************************/ 
 // REQUIRE
 var yo = require('yo-yo') 
 var csjs = require('csjs-inject')
 var minixhr = require('minixhr')
-var chart = require('plotly.js/lib/core')
-
+var chart = require('chart.js')
 
 // COLORS 
 var yellow = "#C2B97F"
@@ -69,7 +68,6 @@ function quizComponent () {
       text-align: center;
       font-family: 'Kaushan Script', cursive;
       padding-bottom: 200px;
-      cursor: pointer;
     }   
     .welcome {
       font-size: 4em;
@@ -96,7 +94,8 @@ function quizComponent () {
       border-radius: 30%;
     }
     .answer:hover {
-      background-color: ${lightBrown}
+      background-color: ${lightBrown};
+      cursor: pointer;
     }
     .instruction {
       color: ${violet};
@@ -105,7 +104,7 @@ function quizComponent () {
       padding: 20px;
     }
     .results {
-      background-color: ${violet};
+      background-color: ${lightBrown};
       text-align: center;
       font-family: 'Kaushan Script', cursive;
       padding-bottom: 200px;
@@ -126,6 +125,15 @@ function quizComponent () {
     .backText {
       color: ${white};
       font-size: 25px;
+    }
+    .showChart {
+      font-size: .5em;
+      color: ${violet};
+      margin: 35px;
+    }
+    .showChart:hover {
+      color: ${white};
+      cursor: pointer;
     }
   `
 	var html = template()
@@ -176,40 +184,63 @@ function quizComponent () {
   }
   
   function seeResults(data) {
+    var stats = getStats()
+    var ctx = yo`
+    	<canvas id="myChart" width="400" height="400"></canvas>
+    `
     return yo`
     	<div class="${css.results}">
         <div class="${css.resultTitle}">
-          See how others answered:
-    		${createChart(data)}
+          Compare your answers
+    <div class="${css.showChart}" onclick=${function(){createChart(ctx, data)}}>Click to see the chart
         </div>
+        ${ctx}
       </div>
     ` 
   }
  
-  function createChart(data) {
-  	return yo`
-    	<div id="myDiv" style="width: 480px; height: 400px;"></div>
-    `
-    
-		var trace1 = {
-      x: [1, 2, 3, 4],
-      y: [10, 11, 12, 13],
-      mode: 'markers',
-      marker: {
-        size: [40, 60, 80, 100]
+  function createChart(ctx, myData) {
+    var data = {
+    	labels: [
+        "Statement #1", "Statement #2", "Statement #3",
+        "Statement #4", "Statement #5", "Statement #6"
+      ],
+      datasets: [
+        {
+          label: "My statments",
+          backgroundColor: "rgba(179,181,198,0.2)",
+          borderColor: "rgba(179,181,198,1)",
+          pointBackgroundColor: "rgba(179,181,198,1)",
+          pointBorderColor: "#fff",
+          pointHoverBackgroundColor: "#fff",
+          pointHoverBorderColor: "rgba(179,181,198,1)",
+          data: myData
+        },  
+        {
+          label: "Others statements",
+          backgroundColor: "rgba(255,99,132,0.2)",
+          borderColor: "rgba(255,99,132,1)",
+          pointBackgroundColor: "rgba(255,99,132,1)",
+          pointBorderColor: "#fff",
+          pointHoverBackgroundColor: "#fff",
+          pointHoverBorderColor: "rgba(255,99,132,1)", 
+   	      data: [1,2,3,4,5,6] 
+        }
+    	]
+		}
+		var myChart = new Chart(ctx, {
+      type: 'radar',
+      data: data,
+      options: {
+        scale: {
+          scale: [1,2,3,4,5,6],
+          ticks: {
+          	beginAtZero: true
+          }
+      	}
       }
-    }
-
-		var data = [trace1];
-
-    var layout = {
-      title: 'Marker Size',
-      showlegend: false,
-      height: 400,
-      width: 480
-    };
-
-		Plotly.newPlot('myDiv', data, layout);
+    })
+    return ctx
   }
   
   function back() {
@@ -220,7 +251,7 @@ function quizComponent () {
     }
   }
     
-  function sendData(results) { 
+  function sendData(results) {  
     var request  = { 
   		url          : 'https://test-ceff2.firebaseio.com/results.json',
   		method       : 'POST',
@@ -228,6 +259,16 @@ function quizComponent () {
 		}
     minixhr(request)
   }
+  
+  function getStats () {
+      minixhr('https://test-ceff2.firebaseio.com/results.json', responseHandler)
+    function responseHandler (data, response, xhr, header) {
+      var data = JSON.parse(data)
+      var keys = Object.keys(data)
+      var answers = keys.map(x=>data[x])
+    }
+  }
+  return stats
 }
 
 quizComponent()
