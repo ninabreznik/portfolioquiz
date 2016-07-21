@@ -1,4 +1,4 @@
-// firebase REST API
+// reduce method, Object.keys, map
 /******************************************************************************
   QUIZ COMPONENT
 ******************************************************************************/ 
@@ -104,7 +104,7 @@ function quizComponent () {
       padding: 20px;
     }
     .results {
-      background-color: ${lightBrown};
+      background-color: ${white};
       text-align: center;
       font-family: 'Kaushan Script', cursive;
       padding-bottom: 200px;
@@ -112,7 +112,7 @@ function quizComponent () {
   	.resultTitle{
       font-size: 4em;
       padding: 50px;
-      color: ${white}
+      color: ${darkBrown}
   	}
     .back {
       display: flex;
@@ -132,8 +132,12 @@ function quizComponent () {
       margin: 35px;
     }
     .showChart:hover {
-      color: ${white};
+      color: ${yellow};
       cursor: pointer;
+    }
+    .myChart {
+      width: 300px;
+      height: 300px;
     }
   `
 	var html = template()
@@ -184,9 +188,8 @@ function quizComponent () {
   }
   
   function seeResults(data) {
-    var stats = getStats()
     var ctx = yo`
-    	<canvas id="myChart" width="400" height="400"></canvas>
+    <canvas class="${css.myChart}"></canvas>
     `
     return yo`
     	<div class="${css.results}">
@@ -200,47 +203,58 @@ function quizComponent () {
   }
  
   function createChart(ctx, myData) {
-    var data = {
-    	labels: [
-        "Statement #1", "Statement #2", "Statement #3",
-        "Statement #4", "Statement #5", "Statement #6"
-      ],
-      datasets: [
-        {
-          label: "My statments",
-          backgroundColor: "rgba(179,181,198,0.2)",
-          borderColor: "rgba(179,181,198,1)",
-          pointBackgroundColor: "rgba(179,181,198,1)",
-          pointBorderColor: "#fff",
-          pointHoverBackgroundColor: "#fff",
-          pointHoverBorderColor: "rgba(179,181,198,1)",
-          data: myData
-        },  
-        {
-          label: "Others statements",
-          backgroundColor: "rgba(255,99,132,0.2)",
-          borderColor: "rgba(255,99,132,1)",
-          pointBackgroundColor: "rgba(255,99,132,1)",
-          pointBorderColor: "#fff",
-          pointHoverBackgroundColor: "#fff",
-          pointHoverBorderColor: "rgba(255,99,132,1)", 
-   	      data: [1,2,3,4,5,6] 
-        }
-    	]
-		}
-		var myChart = new Chart(ctx, {
-      type: 'radar',
-      data: data,
-      options: {
-        scale: {
-          scale: [1,2,3,4,5,6],
-          ticks: {
-          	beginAtZero: true
+    minixhr('https://test-ceff2.firebaseio.com/results.json', responseHandler)
+    function responseHandler (data, response, xhr, header) {
+      var data = JSON.parse(data)
+      var keys = Object.keys(data)
+      var arrayOfAnswers = keys.map(x=>data[x])
+      var stats = arrayOfAnswers.reduce(function(currentResult, answer, i) {
+        console.log(currentResult)
+      	var newResult = currentResult.map(x=>x*(i-1)).map((y,j)=>(y+answer[j])/i)
+        console.log(newResult)
+        return newResult   
+      })
+      var data = {
+        labels: [
+          "Statement #1", "Statement #2", "Statement #3",
+          "Statement #4", "Statement #5", "Statement #6"
+        ],
+        datasets: [
+          {
+            label: "My statments",
+            backgroundColor: "rgba(179,181,198,0.2)",
+            borderColor: "rgba(179,181,198,1)",
+            pointBackgroundColor: "rgba(179,181,198,1)",
+            pointBorderColor: "#fff",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgba(179,181,198,1)",
+            data: myData
+          },  
+          {
+            label: "Others statements",
+            backgroundColor: "rgba(255,99,132,0.2)",
+            borderColor: "rgba(255,99,132,1)",
+            pointBackgroundColor: "rgba(255,99,132,1)",
+            pointBorderColor: "#fff",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgba(255,99,132,1)", 
+            data: stats
           }
-      	}
-      }
-    })
-    return ctx
+        ]
+			}
+      var myChart = new Chart(ctx, {
+        type: 'radar',
+        data: data,
+        options: {
+          scale: {
+            scale: [1,2,3,4,5,6],
+            ticks: {
+              beginAtZero: true
+            }
+          }
+        }
+      })
+    } 
   }
   
   function back() {
@@ -260,15 +274,6 @@ function quizComponent () {
     minixhr(request)
   }
   
-  function getStats () {
-      minixhr('https://test-ceff2.firebaseio.com/results.json', responseHandler)
-    function responseHandler (data, response, xhr, header) {
-      var data = JSON.parse(data)
-      var keys = Object.keys(data)
-      var answers = keys.map(x=>data[x])
-    }
-  }
-  return stats
 }
 
 quizComponent()
