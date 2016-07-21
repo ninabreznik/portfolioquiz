@@ -16319,7 +16319,7 @@ document.head.appendChild(font)
 // QUESTIONS
 
 var questions = [ 
-	`
+  `
   Statement #1:
   The next social network I build, 
   will definitely be for cats.
@@ -16358,159 +16358,157 @@ var results = []
 var answerOptions = [1,2,3,4,5,6]
 
 function quizComponent () {
-	var css = csjs`
-  	.quiz {
-      background-color: ${yellow};
-      text-align: center;
-      font-family: 'Kaushan Script', cursive;
-      padding-bottom: 200px;
-    }   
-    .welcome {
-      font-size: 4em;
-      padding: 50px;
-      color: ${darkBrown}
-    }
-    .question {
-      font-size: 2em;
-      color: ${white};
-      padding: 40px;
-      margin: 0 5%;
-    }
-    .answers {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin: 0 5%;
-    }
-    .answer {
-      background-color: ${violet};
-      padding: 15px;
-      margin: 5px;
-      border: 2px solid ${white};
-      border-radius: 30%;
-    }
-    .answer:hover {
-      background-color: ${lightBrown};
-      cursor: pointer;
-    }
-    .instruction {
-      color: ${violet};
-      font-size: 1em;
-      margin: 0 15%;
-      padding: 20px;
-    }
-    .results {
-      background-color: ${white};
-      text-align: center;
-      font-family: 'Kaushan Script', cursive;
-      padding-bottom: 200px;
-    }
-  	.resultTitle{
-      font-size: 4em;
-      padding: 50px;
-      color: ${darkBrown}
-  	}
-    .back {
-      display: flex;
-      justify-content: center;
-    }
-    .backImg {
-      height: 30px;
-      padding: 5px;
-    }
-    .backText {
-      color: ${white};
-      font-size: 25px;
-    }
-    .showChart {
-      font-size: .5em;
-      color: ${violet};
-      margin: 35px;
-    }
-    .showChart:hover {
-      color: ${yellow};
-      cursor: pointer;
-    }
-    .myChart {
-      width: 300px;
-      height: 300px;
-    }
+  var css = csjs`
+  .quiz {
+    background-color: ${yellow};
+    text-align: center;
+    font-family: 'Kaushan Script', cursive;
+    padding-bottom: 200px;
+  }   
+  .welcome {
+    font-size: 4em;
+    padding: 50px;
+    color: ${darkBrown}
+  }
+  .question {
+    font-size: 2em;
+    color: ${white};
+    padding: 40px;
+    margin: 0 5%;
+  }
+  .answers {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 5%;
+  }
+  .answer {
+    background-color: ${violet};
+    padding: 15px;
+    margin: 5px;
+    border: 2px solid ${white};
+    border-radius: 30%;
+  }
+  .answer:hover {
+    background-color: ${lightBrown};
+    cursor: pointer;
+  }
+  .instruction {
+    color: ${violet};
+    font-size: 1em;
+    margin: 0 15%;
+    padding: 20px;
+  }
+  .results {
+    background-color: ${white};
+    text-align: center;
+    font-family: 'Kaushan Script', cursive;
+    padding-bottom: 200px;
+  }
+  .resultTitle{
+    font-size: 4em;
+    padding: 50px;
+    color: ${darkBrown}
+  }
+  .back {
+    display: flex;
+    justify-content: center;
+  }
+  .backImg {
+    height: 30px;
+    padding: 5px;
+  }
+  .backText {
+    color: ${white};
+    font-size: 25px;
+  }
+  .showChart {
+    font-size: .5em;
+    color: ${violet};
+    margin: 35px;
+  }
+  .showChart:hover {
+    color: ${yellow};
+    cursor: pointer;
+  }
+  .myChart {
+    width: 300px;
+    height: 300px;
+  }
   `
-	var html = template()
+  var html = template()
   document.body.appendChild(html) 
-   
+
   return html
-  
+
   function template () {
     return yo`
     <div class="${css.quiz}">
       <div class="${css.welcome}">
         Welcome to my quiz!
-      </div>
-      <div class="${css.question}">
-        ${question} 
-      </div>
-      <div class="${css.answers}">
-        ${answerOptions.map(x=>yo`
-        	<div class="${css.answer}" onclick=${nextQuestion(x)}>${x}</div>
-        `)}
-      </div>
-      <div class="${css.instruction}">
-        Choose how strongly do you agree with the statement<br>
-        (1 - don't agree at all, 6 - completely agree) 
-        .
-			</div>
-        <div class="${css.back}" onclick=${back}>
-        	<img src="http://i.imgur.com/L6kXXEi.png" class="${css.backImg}"> 
-          <div class="${css.backText}">Back</div>
-        </div>
-    </div> 
-    ` 
-  } 
-  
-  function nextQuestion(id) {
-  	return function () {
-      if (i < (questions.length-1)) {
-        results[i] = id
-        i = i+1  
-        question = questions[i]
-        yo.update(html, template())
-    	} else { 
-        results[i] = id
-        sendData(results)
-        yo.update(html, seeResults(results))
-    	}
-    }
-  }
-  
+          </div>
+        <div class="${css.question}">
+          ${question} 
+    </div>
+    <div class="${css.answers}">
+      ${answerOptions.map(x=>yo`
+                          <div class="${css.answer}" onclick=${nextQuestion(x)}>${x}</div>
+      `)}
+  </div>
+  <div class="${css.instruction}">
+    Choose how strongly do you agree with the statement<br>
+      (1 - don't agree at all, 6 - completely agree) 
+       .
+       </div>
+       <div class="${css.back}" onclick=${back}>
+       <img src="http://i.imgur.com/L6kXXEi.png" class="${css.backImg}"> 
+       <div class="${css.backText}">Back</div>
+       </div>
+       </div> 
+       ` 
+       } 
+
+       function nextQuestion(id) {
+        return function () {
+          if (i < (questions.length-1)) {
+            results[i] = id
+            i = i+1  
+            question = questions[i]
+            yo.update(html, template())
+          } else { 
+            results[i] = id
+            sendData(results)
+            yo.update(html, seeResults(results))
+          }
+        }
+      }
+
   function seeResults(data) {
     var ctx = yo`
     <canvas class="${css.myChart}"></canvas>
     `
     return yo`
-    	<div class="${css.results}">
-        <div class="${css.resultTitle}">
-          Compare your answers
-    <div class="${css.showChart}" onclick=${function(){createChart(ctx, data)}}>Click to see the chart
+    <div class="${css.results}">
+      <div class="${css.resultTitle}">
+        Compare your answers
+        <div class="${css.showChart}" onclick=${function(){createChart(ctx, data)}}>Click to see the chart
         </div>
         ${ctx}
-      </div>
-    ` 
+    </div>
+    `
   }
- 
+
   function createChart(ctx, myData) {
     minixhr('https://test-ceff2.firebaseio.com/results.json', responseHandler)
     function responseHandler (data, response, xhr, header) {
-      var data = JSON.parse(data)
+      var data = JSON.parse(data) 
       var keys = Object.keys(data)
       var arrayOfAnswers = keys.map(x=>data[x])
-      var stats = arrayOfAnswers.reduce(function(currentResult, answer, i) {
-        console.log(currentResult)
-      	var newResult = currentResult.map(x=>x*(i-1)).map((y,j)=>(y+answer[j])/i)
-        console.log(newResult)
-        return newResult   
-      })
-      var data = {
+      var stats = arrayOfAnswers.reduce(function(currentResult,answer,i) {
+        var newResult=currentResult.map((x,count)=>(x*(i+1)+answer[count])/(i+2))
+        return newResult
+      }, myData)
+      var data = { 
         labels: [
           "Statement #1", "Statement #2", "Statement #3",
           "Statement #4", "Statement #5", "Statement #6"
@@ -16537,7 +16535,7 @@ function quizComponent () {
             data: stats
           }
         ]
-			}
+      }
       var myChart = new Chart(ctx, {
         type: 'radar',
         data: data,
@@ -16550,9 +16548,9 @@ function quizComponent () {
           }
         }
       })
-    } 
+      } 
   }
-  
+
   function back() {
     if (i > 0) { 
       i = i-1 
@@ -16560,16 +16558,16 @@ function quizComponent () {
       yo.update(html, template())
     }
   }
-    
+
   function sendData(results) {  
     var request  = { 
-  		url          : 'https://test-ceff2.firebaseio.com/results.json',
-  		method       : 'POST',
-  		data         : JSON.stringify(results)
-		}
+      url          : 'https://test-ceff2.firebaseio.com/results.json',
+      method       : 'POST',
+      data         : JSON.stringify(results)
+    }
     minixhr(request)
   }
-  
+
 }
 
 quizComponent()
